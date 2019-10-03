@@ -11,6 +11,7 @@ public class DocumentEx4 {
     }
 
     public DocumentEx4(String content) {
+//        this.content = content;
         this("Unknown", content);
     }
 
