@@ -1,6 +1,11 @@
 package lesson1.homework.participant;
 
+//public class Cat extends AbstractParticipant {
 public class Cat implements Participant {
+
+//    public Cat(String name, int jumpHeight, int maxRunLength) {
+//        super(name, jumpHeight, maxRunLength);
+//    }
 
     private final String name;
     private final int jumpHeight;
