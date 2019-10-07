@@ -4,18 +4,20 @@ import java.util.Objects;
 
 public class Document {
 
-    private static final String DEFAULT_TITLE = "Unknown";
+    public static final String DEFAULT_TITLE = "Unknown";
 
     private String title;
     private String content;
 
-    public Document(String content) {
-        this(DEFAULT_TITLE, content);
-    }
+    int count;
 
     public Document(String title, String content) {
         this.title = title;
         this.content = content;
+    }
+
+    public Document(String content) {
+        this(DEFAULT_TITLE, content);
     }
 
     public String getTitle() {
@@ -56,11 +58,15 @@ public class Document {
         return Objects.hash(title, content);
     }
 
-
-
-
     public static void main(String[] args) {
-        Document doc = new Document("my title", "my content");
-        System.out.println(doc);
+        Document doc1 = new Document("my title", "my content");
+        Document doc2 = new Document("my title", "my content");
+
+        int a = 5;
+        int b = 5;
+//        System.out.println(doc1 == doc2);
+        System.out.println(doc1.equals(doc2));
+
+//        System.out.println(doc);
     }
 }

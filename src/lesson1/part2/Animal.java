@@ -1,6 +1,6 @@
 package lesson1.part2;
 
-public class Animal {
+public abstract class Animal/* extends Object*/ {
 
     private final String name;
 
@@ -20,7 +20,5 @@ public class Animal {
         return name;
     }
 
-//    public void voice() {
-//        System.out.println("Животное издало какой-то звук");
-//    }
+    public abstract void voice();
 }

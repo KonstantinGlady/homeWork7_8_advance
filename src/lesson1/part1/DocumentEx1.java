@@ -9,7 +9,7 @@ public class DocumentEx1 {
 
     /* ---------------------------------- */
     public static void main(String[] args) {
-        DocumentEx2 document = new DocumentEx2();
+        DocumentEx1 document = new DocumentEx1();
         document.title = "My First part1";
         document.content = "Content of my first part1";
 
