@@ -1,7 +1,5 @@
 package lesson2.homework;
 
-import java.util.Formatter;
-
 public class MyArrayDataException extends RuntimeException {
 
     public MyArrayDataException(String cellValue, int rowIndex, int colIndex) {
