@@ -5,7 +5,7 @@ import java.util.Set;
 public class Task2 {
 
     public static void main(String[] args) {
-        PhoneBook phoneBook = new PhoneBook();
+        IPhoneBook phoneBook = new PhoneBook();
         phoneBook.add("Krylov", "777-77-77");
         phoneBook.add("Ivanov", "555-55-55");
         phoneBook.add("Petrov", "666-66-66");
