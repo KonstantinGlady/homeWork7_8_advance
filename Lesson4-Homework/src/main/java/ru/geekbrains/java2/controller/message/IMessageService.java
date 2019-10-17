@@ -1,6 +1,6 @@
 package ru.geekbrains.java2.controller.message;
 
-public interface IMessageProcessor {
+public interface IMessageService {
 
     void sendMessage(String message);
 

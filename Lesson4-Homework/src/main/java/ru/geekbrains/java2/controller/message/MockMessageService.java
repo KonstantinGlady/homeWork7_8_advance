@@ -2,11 +2,11 @@ package ru.geekbrains.java2.controller.message;
 
 import javafx.scene.control.TextArea;
 
-public class MockMessageProcessor implements IMessageProcessor {
+public class MockMessageService implements IMessageService {
 
     private TextArea chatTextArea;
 
-    public MockMessageProcessor(TextArea chatTextArea) {
+    public MockMessageService(TextArea chatTextArea) {
         this.chatTextArea = chatTextArea;
     }
 
