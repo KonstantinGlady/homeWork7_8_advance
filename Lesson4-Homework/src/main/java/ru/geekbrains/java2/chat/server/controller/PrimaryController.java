@@ -1,4 +1,4 @@
-package ru.geekbrains.java2.controller;
+package ru.geekbrains.java2.chat.client.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -9,8 +9,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import ru.geekbrains.java2.controller.message.IMessageService;
-import ru.geekbrains.java2.controller.message.MockMessageService;
+import ru.geekbrains.java2.chat.client.controller.message.IMessageService;
+import ru.geekbrains.java2.chat.client.controller.message.MockMessageService;
 
 public class PrimaryController implements Initializable {
 

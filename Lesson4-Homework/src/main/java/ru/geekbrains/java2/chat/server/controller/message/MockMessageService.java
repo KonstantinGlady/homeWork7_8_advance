@@ -1,4 +1,4 @@
-package ru.geekbrains.java2.controller.message;
+package ru.geekbrains.java2.chat.client.controller.message;
 
 import javafx.scene.control.TextArea;
 

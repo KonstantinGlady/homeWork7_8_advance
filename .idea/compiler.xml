@@ -6,11 +6,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Lesson4-Homework" />
+        <module name="NetworkChatClient" />
+        <module name="NetworkChatServer" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Lesson4-Homework" target="11" />
+      <module name="lesson4-homework" target="11" />
+      <module name="NetworkChat -Client" target="11" />
+      <module name="NetworkChatClient" target="11" />
+      <module name="NetworkChatServer" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>
