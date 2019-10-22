@@ -36,7 +36,7 @@ public class Network {
         try {
             outputStream.writeUTF(message);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Failed to send message: " + message);
         }
     }
 }
