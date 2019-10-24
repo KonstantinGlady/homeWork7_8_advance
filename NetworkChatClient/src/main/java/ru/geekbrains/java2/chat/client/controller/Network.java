@@ -3,12 +3,13 @@ package ru.geekbrains.java2.chat.client.controller;
 import javafx.application.Platform;
 import ru.geekbrains.java2.chat.client.controller.message.IMessageService;
 
+import java.io.Closeable;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-public class Network {
+public class Network implements Closeable {
 
     private final Socket socket;
     private final DataInputStream inputStream;
@@ -24,8 +25,9 @@ public class Network {
                 try {
                     String message = inputStream.readUTF();
                     Platform.runLater(() -> messageService.processRetrievedMessage(message));
-                } catch (IOException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
+                    break;
                 }
             }
         }).start();
@@ -38,5 +40,10 @@ public class Network {
         } catch (IOException e) {
             throw new RuntimeException("Failed to send message: " + message);
         }
+    }
+
+    @Override
+    public void close() throws IOException {
+        socket.close();
     }
 }

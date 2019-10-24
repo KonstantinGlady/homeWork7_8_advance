@@ -8,10 +8,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import ru.geekbrains.java2.chat.client.controller.message.ServerEchoMessageService;
+import ru.geekbrains.java2.chat.client.controller.message.ServerMessageService;
 import ru.geekbrains.java2.chat.client.controller.message.IMessageService;
 
 public class PrimaryController implements Initializable {
@@ -27,11 +26,10 @@ public class PrimaryController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 //        this.messageService = new MockMessageService(chatTextArea);
         try {
-            this.messageService = new ServerEchoMessageService(chatTextArea);
+            this.messageService = new ServerMessageService(chatTextArea, true);
         } catch (Exception e) {
             showError(e);
         }
-
     }
 
     private void showError(Exception e) {
@@ -69,7 +67,16 @@ public class PrimaryController implements Initializable {
 
     private void sendMessage() {
         String message = messageText.getText();
+        chatTextArea.appendText("Я: " + message + System.lineSeparator());
         messageService.sendMessage(message);
         messageText.clear();
+    }
+
+    public void shutdown() {
+        try {
+            messageService.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

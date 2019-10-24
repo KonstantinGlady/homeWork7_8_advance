@@ -7,19 +7,22 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class ServerEchoMessageService implements IMessageService {
+public class ServerMessageService implements IMessageService {
 
     private static final String HOST_ADDRESS_PROP = "server.address";
     private static final String HOST_PORT_PROP = "server.port";
+    public static final String STOP_SERVER_COMMAND = "/end";
 
     private String hostAddress;
     private int hostPort;
 
     private final TextArea chatTextArea;
+    private boolean needStopServerOnClosed;
     private Network network;
 
-    public ServerEchoMessageService(TextArea chatTextArea) {
+    public ServerMessageService(TextArea chatTextArea, boolean needStopServerOnClosed) {
         this.chatTextArea = chatTextArea;
+        this.needStopServerOnClosed = needStopServerOnClosed;
         initialize();
     }
 
@@ -56,6 +59,14 @@ public class ServerEchoMessageService implements IMessageService {
 
     @Override
     public void processRetrievedMessage(String message) {
-        chatTextArea.appendText(message + System.lineSeparator());
+        chatTextArea.appendText("Сервер: " + message + System.lineSeparator());
+    }
+
+    @Override
+    public void close() throws IOException {
+        if (needStopServerOnClosed) {
+            sendMessage(STOP_SERVER_COMMAND);
+        }
+        network.close();
     }
 }

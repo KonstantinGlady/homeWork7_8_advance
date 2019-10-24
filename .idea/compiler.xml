@@ -6,15 +6,19 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="NetworkChatClient" />
         <module name="NetworkChatServer" />
+        <module name="NetworkChatClient" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="lesson4-homework" target="11" />
       <module name="NetworkChat -Client" target="11" />
       <module name="NetworkChatClient" target="11" />
+      <module name="NetworkChatClient.main" target="1.8" />
+      <module name="NetworkChatClient.test" target="1.8" />
       <module name="NetworkChatServer" target="11" />
+      <module name="ru.geekbrains.java2.NetworkChatClient.main" target="1.8" />
+      <module name="ru.geekbrains.java2.NetworkChatClient.test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

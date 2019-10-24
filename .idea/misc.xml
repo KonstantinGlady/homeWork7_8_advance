@@ -5,8 +5,8 @@
       <list>
         <option value="$PROJECT_DIR$/Lesson4-Homework/pom.xml" />
         <option value="$PROJECT_DIR$/NetworkChat - Client/pom.xml" />
-        <option value="$PROJECT_DIR$/NetworkChatClient/pom.xml" />
         <option value="$PROJECT_DIR$/NetworkChatServer/pom.xml" />
+        <option value="$PROJECT_DIR$/NetworkChatClient/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
