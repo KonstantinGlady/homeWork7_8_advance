@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/GeekBrains_Java2_2019_10_03.iml" filepath="$PROJECT_DIR$/GeekBrains_Java2_2019_10_03.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/GeekBrains_Java2_2019_10_03.NetworkChatClient.main.iml" filepath="$PROJECT_DIR$/.idea/modules/GeekBrains_Java2_2019_10_03.NetworkChatClient.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/GeekBrains_Java2_2019_10_03.NetworkChatClient.test.iml" filepath="$PROJECT_DIR$/.idea/modules/GeekBrains_Java2_2019_10_03.NetworkChatClient.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/NetworkChatClient/NetworkChatClient.iml" filepath="$PROJECT_DIR$/NetworkChatClient/NetworkChatClient.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/NetworkChatClient.main.iml" filepath="$PROJECT_DIR$/.idea/modules/NetworkChatClient.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/NetworkChatClient.test.iml" filepath="$PROJECT_DIR$/.idea/modules/NetworkChatClient.test.iml" />

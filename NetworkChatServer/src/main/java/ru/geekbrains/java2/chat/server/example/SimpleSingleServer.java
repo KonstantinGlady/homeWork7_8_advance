@@ -1,9 +1,8 @@
-package ru.geekbrains.java2.chat.server;
+package ru.geekbrains.java2.chat.server.example;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Scanner;
 
 public class SimpleSingleServer {
 
@@ -72,6 +71,7 @@ public class SimpleSingleServer {
             }
             System.out.println("Close System.in thread");
         });
+//        serverConsoleThread.setDaemon(true);
         serverConsoleThread.start();
     }
 }

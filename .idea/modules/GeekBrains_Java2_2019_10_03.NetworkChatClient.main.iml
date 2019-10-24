@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id="NetworkChatClient:main" external.linked.project.path="$MODULE_DIR$/../../NetworkChatClient" external.root.project.path="$MODULE_DIR$/../../NetworkChatClient" external.system.id="GRADLE" external.system.module.group="ru.geekbrains.java2" external.system.module.type="sourceSet" external.system.module.version="1.0-SNAPSHOT" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
+    <output url="file://$MODULE_DIR$/../../NetworkChatClient/build/classes/java/main" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../NetworkChatClient/src/main">
+      <sourceFolder url="file://$MODULE_DIR$/../../NetworkChatClient/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../NetworkChatClient/src/main/resources" type="java-resource" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Gradle: org.apache.commons:commons-lang3:3.9" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-fxml:win:13" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-controls:win:13" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-controls:13" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-graphics:win:13" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-graphics:13" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-base:win:13" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-base:13" level="project" />
+  </component>
+</module>

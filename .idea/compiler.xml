@@ -11,6 +11,8 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="GeekBrains_Java2_2019_10_03.NetworkChatClient.main" target="1.8" />
+      <module name="GeekBrains_Java2_2019_10_03.NetworkChatClient.test" target="1.8" />
       <module name="lesson4-homework" target="11" />
       <module name="NetworkChat -Client" target="11" />
       <module name="NetworkChatClient" target="11" />

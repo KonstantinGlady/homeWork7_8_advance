@@ -1,4 +1,4 @@
-package ru.geekbrains.java2.chat.server.httpexample;
+package ru.geekbrains.java2.chat.server.example.http;
 
 import java.io.BufferedReader;
 import java.io.IOException;

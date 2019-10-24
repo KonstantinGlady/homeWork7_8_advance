@@ -1,4 +1,4 @@
-package ru.geekbrains.java2.chat.server;
+package ru.geekbrains.java2.chat.server.example;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;

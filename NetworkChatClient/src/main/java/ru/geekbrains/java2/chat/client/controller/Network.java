@@ -11,13 +11,23 @@ import java.net.Socket;
 
 public class Network implements Closeable {
 
-    private final Socket socket;
-    private final DataInputStream inputStream;
-    private final DataOutputStream outputStream;
+    private final String serverAddress;
+    private final int port;
+    private final IMessageService messageService;
+
+    private Socket socket;
+    private DataInputStream inputStream;
+    private DataOutputStream outputStream;
 
     public Network(String serverAddress, int port, IMessageService messageService) throws IOException {
+        this.serverAddress = serverAddress;
+        this.port = port;
+        this.messageService = messageService;
+    }
+
+    private void initNetworkState(String serverAddress, int port) throws IOException {
         this.socket = new Socket(serverAddress, port);
-        this.inputStream  = new DataInputStream(socket.getInputStream());
+        this.inputStream = new DataInputStream(socket.getInputStream());
         this.outputStream = new DataOutputStream(socket.getOutputStream());
 
         new Thread(() -> {
@@ -36,6 +46,9 @@ public class Network implements Closeable {
 
     public void send(String message) {
         try {
+            if (outputStream == null) {
+                initNetworkState(serverAddress, port);
+            }
             outputStream.writeUTF(message);
         } catch (IOException e) {
             throw new RuntimeException("Failed to send message: " + message);

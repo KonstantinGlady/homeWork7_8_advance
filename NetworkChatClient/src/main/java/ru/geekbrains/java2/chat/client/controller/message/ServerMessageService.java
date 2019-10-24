@@ -1,7 +1,9 @@
 package ru.geekbrains.java2.chat.client.controller.message;
 
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import ru.geekbrains.java2.chat.client.controller.Network;
+import ru.geekbrains.java2.chat.client.controller.PrimaryController;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,11 +19,13 @@ public class ServerMessageService implements IMessageService {
     private int hostPort;
 
     private final TextArea chatTextArea;
+    private PrimaryController primaryController;
     private boolean needStopServerOnClosed;
     private Network network;
 
-    public ServerMessageService(TextArea chatTextArea, boolean needStopServerOnClosed) {
-        this.chatTextArea = chatTextArea;
+    public ServerMessageService(PrimaryController primaryController, boolean needStopServerOnClosed) {
+        this.chatTextArea = primaryController.chatTextArea;
+        this.primaryController = primaryController;
         this.needStopServerOnClosed = needStopServerOnClosed;
         initialize();
     }
@@ -59,7 +63,19 @@ public class ServerMessageService implements IMessageService {
 
     @Override
     public void processRetrievedMessage(String message) {
-        chatTextArea.appendText("Сервер: " + message + System.lineSeparator());
+        if (message.startsWith("/authok")) {
+            primaryController.authPanel.setVisible(false);
+            primaryController.chatPanel.setVisible(true);
+        }
+        else if (primaryController.authPanel.isVisible()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Authentication is failed");
+            alert.setContentText(message);
+            alert.showAndWait();
+        }
+        else {
+            chatTextArea.appendText("Сервер: " + message + System.lineSeparator());
+        }
     }
 
     @Override
