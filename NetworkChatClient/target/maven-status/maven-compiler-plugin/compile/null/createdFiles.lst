@@ -1,0 +1,7 @@
+ru\geekbrains\java2\chat\client\controller\Network.class
+ru\geekbrains\java2\chat\client\controller\message\ServerMessageService.class
+ru\geekbrains\java2\chat\client\view\App.class
+ru\geekbrains\java2\chat\client\controller\message\ServerConnectionException.class
+ru\geekbrains\java2\chat\client\controller\message\IMessageService.class
+ru\geekbrains\java2\chat\client\controller\PrimaryController.class
+ru\geekbrains\java2\chat\client\controller\message\MockMessageService.class
