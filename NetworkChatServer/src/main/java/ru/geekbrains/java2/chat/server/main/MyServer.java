@@ -65,17 +65,5 @@ public class MyServer {
         }
     }
 
-    public synchronized void castPrivateMessage(String message) {
-        String[] strings = message.split("\\s+");
 
-        String nickSender= strings[0];
-        String nickReceiver= strings[2];
-        String messageForSending = strings[3];
-
-        for (ClientHandler client: clients){
-            if (client.getClientName().equals(nickReceiver)){
-                client.sendMessage(("w from "+ nickSender + " "+messageForSending));
-            }
-        }
-    }
 }
