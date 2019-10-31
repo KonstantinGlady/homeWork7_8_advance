@@ -70,7 +70,7 @@ public class MyServer {
 
         String nickSender= strings[0];
         String nickReceiver= strings[2];
-        String messageForSending = message.substring(message.indexOf(strings[3]));
+        String messageForSending = message.substring(message.indexOf(strings[3]));//
 
         for (ClientHandler client: clients){
             if (client.getClientName().equals(nickReceiver)){
