@@ -96,7 +96,5 @@ public class PrimaryController implements Initializable {
         messageService.sendMessage(String.format("/auth %s %s", login, password));
     }
 
-    public void closeWindow() {
-        System.exit(0);
-    }
+
 }

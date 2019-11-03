@@ -8,13 +8,12 @@ import ru.geekbrains.java2.chat.client.controller.PrimaryController;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
-import java.util.Timer;
-import java.util.TimerTask;
+
 
 
 public class ServerMessageService implements IMessageService {
 
-    private Timer timer;
+
 
     private static final String HOST_ADDRESS_PROP = "server.address";
     private static final String HOST_PORT_PROP = "server.port";
@@ -38,35 +37,8 @@ public class ServerMessageService implements IMessageService {
     private void initialize() {
         readProperties();
         startConnectionToServer();
-        startTimerForConnection();
     }
 
-    private void startTimerForConnection() {
-        new Thread(() -> {
-
-            TimerTask task = new TimerTask() {
-                @Override
-                public void run() {
-                    if (primaryController.authPanel.isVisible()) {
-                        System.out.println("time is out, close connection");
-
-                        try {
-                            network.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        } finally {
-                            primaryController.closeWindow();
-                        }
-
-                    }
-                }
-            };
-
-            timer = new Timer();
-            timer.schedule(task, 120000);
-
-        }).start();
-    }
 
 
     private void startConnectionToServer() {
