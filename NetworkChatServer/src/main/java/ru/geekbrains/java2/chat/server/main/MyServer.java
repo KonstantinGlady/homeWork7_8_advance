@@ -10,6 +10,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class MyServer {
 
     private static final int PORT = 8189;
@@ -26,6 +27,9 @@ public class MyServer {
                 System.out.println("Awaiting client connection...");
                 Socket socket = serverSocket.accept();
                 System.out.println("Client has connected");
+
+
+
                 new ClientHandler(socket, this);
             }
 
@@ -65,5 +69,17 @@ public class MyServer {
         }
     }
 
+    public synchronized void castPrivateMessage(String message) {
+        String[] strings = message.split("\\s+");
 
+        String nickSender= strings[0];
+        String nickReceiver= strings[2];
+        String messageForSending = message.substring(message.indexOf(strings[3]));//
+
+        for (ClientHandler client: clients){
+            if (client.getClientName().equals(nickReceiver)){
+                client.sendMessage(("w from "+ nickSender + " "+messageForSending));
+            }
+        }
+    }
 }

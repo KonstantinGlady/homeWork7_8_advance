@@ -9,6 +9,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
+
 public class Network implements Closeable {
 
     private final String serverAddress;
@@ -41,6 +42,7 @@ public class Network implements Closeable {
                 }
             }
         }).start();
+
     }
 
 

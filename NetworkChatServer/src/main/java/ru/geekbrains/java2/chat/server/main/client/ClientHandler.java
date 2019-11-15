@@ -2,10 +2,13 @@ package ru.geekbrains.java2.chat.server.main.client;
 
 import ru.geekbrains.java2.chat.server.main.MyServer;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+
 
 public class ClientHandler {
 
@@ -17,12 +20,15 @@ public class ClientHandler {
     private DataInputStream in;
     private DataOutputStream out;
 
+
     public ClientHandler(Socket socket, MyServer myServer) {
         try {
             this.socket = socket;
             this.myServer = myServer;
             this.in = new DataInputStream(socket.getInputStream());
             this.out = new DataOutputStream(socket.getOutputStream());
+
+
 
             new Thread(() -> {
                 try {
@@ -40,6 +46,7 @@ public class ClientHandler {
 
     }
 
+
     private void readMessages() throws IOException {
         while (true) {
             String clientMessage = in.readUTF();
@@ -47,10 +54,11 @@ public class ClientHandler {
             if (clientMessage.equals("/end")) {
                 return;
             }
-
+            if (clientMessage.startsWith("/w")) {
+                myServer.castPrivateMessage(clientName + ": " + clientMessage);
+            } else {
                 myServer.broadcastMessage(clientName + ": " + clientMessage);
-           
-
+            }
         }
     }
 
@@ -67,31 +75,35 @@ public class ClientHandler {
 
     // "/auth login password"
     private void authentication() throws IOException {
-        String clientMessage = in.readUTF();
-        if (clientMessage.startsWith("/auth")) {
-            String[] loginAndPasswords = clientMessage.split("\\s+");
-            String login    = loginAndPasswords[1];
-            String password = loginAndPasswords[2];
 
-            String nick = myServer.getAuthService().getNickByLoginPass(login, password);
-            if (nick == null) {
-                sendMessage("Неверные логин/пароль");
-                return;
-            }
+        if (socket.isConnected()) {
 
-            if (myServer.isNickBusy(nick)) {
-                sendMessage("Учетная запись уже используется");
-                return;
-            }
+            String clientMessage = in.readUTF();
+            if (clientMessage.startsWith("/auth")) {
+                String[] loginAndPasswords = clientMessage.split("\\s+");
+                String login = loginAndPasswords[1];
+                String password = loginAndPasswords[2];
 
-            sendMessage("/authok " + nick);
-            clientName = nick;
-            myServer.broadcastMessage(clientName + " is online");
-            myServer.subscribe(this);
+                String nick = myServer.getAuthService().getNickByLoginPass(login, password);
+                if (nick == null) {
+                    sendMessage("Неверные логин/пароль");
+                    return;
+                }
+
+                if (myServer.isNickBusy(nick)) {
+                    sendMessage("Учетная запись уже используется");
+                    return;
+                }
+
+                sendMessage("/authok " + nick);
+                clientName = nick;
+                myServer.broadcastMessage(clientName + " is online");
+                myServer.subscribe(this);
+             }
         }
     }
 
-    public void sendMessage(String message)  {
+    public void sendMessage(String message) {
         try {
             out.writeUTF(message);
         } catch (IOException e) {
