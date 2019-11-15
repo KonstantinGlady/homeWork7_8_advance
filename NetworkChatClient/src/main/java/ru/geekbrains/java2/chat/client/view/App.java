@@ -28,7 +28,7 @@ public class App extends Application {
         PrimaryController controller = loader.getController();
         stage.setOnHidden(e -> controller.shutdown());
         stage.show();
-    }
+    }//
 
     public static void main(String[] args) {
         launch();
