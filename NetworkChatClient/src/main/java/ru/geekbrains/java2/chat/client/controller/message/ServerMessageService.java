@@ -123,6 +123,7 @@ public class ServerMessageService implements IMessageService {
             while ((str = bf.readLine()) != null){
                 primaryController.chatTextArea.appendText(str + System.lineSeparator());
             }
+            bf.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
