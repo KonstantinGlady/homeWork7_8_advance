@@ -1,12 +1,13 @@
 package ru.geekbrains.java2.chat.client.controller.message;
 
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import ru.geekbrains.java2.chat.client.controller.Network;
 import ru.geekbrains.java2.chat.client.controller.PrimaryController;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
+import java.util.Iterator;
 import java.util.Properties;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -100,6 +101,7 @@ public class ServerMessageService implements IMessageService {
     @Override
     public void processRetrievedMessage(String message) {
         if (message.startsWith("/authok")) {
+            takeLastMessage();
             primaryController.authPanel.setVisible(false);
             primaryController.chatPanel.setVisible(true);
         } else if (primaryController.authPanel.isVisible()) {
@@ -112,11 +114,60 @@ public class ServerMessageService implements IMessageService {
         }
     }
 
+    private void takeLastMessage() {
+        String userName = primaryController.loginField.getText();
+        try {
+            BufferedReader bf = new BufferedReader(new FileReader(
+                                new File("usersStores/"+userName+".usr")));
+            String str;
+            while ((str = bf.readLine()) != null){
+                primaryController.chatTextArea.appendText(str + System.lineSeparator());
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void close() throws IOException {
+        safeLastMessage();
         if (needStopServerOnClosed) {
             sendMessage(STOP_SERVER_COMMAND);
         }
         network.close();
+    }
+
+    private void safeLastMessage()  {
+
+       TextArea textArea = primaryController.chatTextArea;
+
+        while (textArea.getText().split("\n",-1).length > 201){
+            int line = textArea.getText().indexOf("\n");
+            textArea.replaceText(0,line+1,"");
+        }
+
+
+        String userName = primaryController.loginField.getText();
+        ObservableList<CharSequence> observableList = textArea.getParagraphs();
+
+        Iterator<CharSequence> iterator = observableList.iterator();
+
+        try {
+            BufferedWriter bufferedWriter = new BufferedWriter(new
+                        FileWriter(new File("usersStores/"+userName+".usr")));
+            while (iterator.hasNext()){
+                CharSequence sequence = iterator.next();
+                bufferedWriter.append(sequence);
+                bufferedWriter.newLine();
+            }
+            bufferedWriter.flush();
+            bufferedWriter.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }
