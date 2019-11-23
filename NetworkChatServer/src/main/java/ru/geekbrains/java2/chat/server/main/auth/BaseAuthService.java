@@ -66,7 +66,8 @@ public class BaseAuthService implements AuthService {
         return null;*/
         String nick = null;
         try {
-            PreparedStatement ps = connection.prepareStatement("select nick from ac_table where login = ? and pass = ?");
+            PreparedStatement ps = connection.prepareStatement(
+                    "select nick from ac_table where login = ? and pass = ?");
             ps.setString(1, login);
             ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
