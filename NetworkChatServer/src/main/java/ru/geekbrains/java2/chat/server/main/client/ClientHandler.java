@@ -8,6 +8,9 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 public class ClientHandler {
@@ -19,7 +22,7 @@ public class ClientHandler {
     private Socket socket;
     private DataInputStream in;
     private DataOutputStream out;
-
+    private ExecutorService service;
 
     public ClientHandler(Socket socket, MyServer myServer) {
         try {
@@ -28,9 +31,22 @@ public class ClientHandler {
             this.in = new DataInputStream(socket.getInputStream());
             this.out = new DataOutputStream(socket.getOutputStream());
 
+            service = Executors.newCachedThreadPool();
+            service.execute(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        authentication();
+                        readMessages();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } finally {
+                        closeConnection();
+                    }
+                }
+            });
 
-
-            new Thread(() -> {
+            /*new Thread(() -> {
                 try {
                     authentication();
                     readMessages();
@@ -39,7 +55,7 @@ public class ClientHandler {
                 } finally {
                     closeConnection();
                 }
-            }).start();
+            }).start();*/
         } catch (IOException e) {
             throw new RuntimeException("Failed to create client handler", e);
         }
@@ -63,6 +79,7 @@ public class ClientHandler {
     }
 
     private void closeConnection() {
+        service.shutdown();
         myServer.unsubscribe(this);
         myServer.broadcastMessage(clientName + " is offline");
         try {
