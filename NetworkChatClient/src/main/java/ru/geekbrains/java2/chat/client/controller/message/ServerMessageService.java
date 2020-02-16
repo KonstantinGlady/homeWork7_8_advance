@@ -9,7 +9,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+
+
 public class ServerMessageService implements IMessageService {
+
+
 
     private static final String HOST_ADDRESS_PROP = "server.address";
     private static final String HOST_PORT_PROP = "server.port";
@@ -34,6 +38,8 @@ public class ServerMessageService implements IMessageService {
         readProperties();
         startConnectionToServer();
     }
+
+
 
     private void startConnectionToServer() {
         try {
@@ -66,14 +72,12 @@ public class ServerMessageService implements IMessageService {
         if (message.startsWith("/authok")) {
             primaryController.authPanel.setVisible(false);
             primaryController.chatPanel.setVisible(true);
-        }
-        else if (primaryController.authPanel.isVisible()) {
+        } else if (primaryController.authPanel.isVisible()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Authentication is failed");
             alert.setContentText(message);
             alert.showAndWait();
-        }
-        else {
+        } else {
             chatTextArea.appendText("Сервер: " + message + System.lineSeparator());
         }
     }

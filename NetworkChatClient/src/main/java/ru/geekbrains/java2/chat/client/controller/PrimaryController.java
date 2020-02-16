@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import jdk.tools.jlink.internal.Platform;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import ru.geekbrains.java2.chat.client.controller.message.ServerMessageService;
 import ru.geekbrains.java2.chat.client.controller.message.IMessageService;
@@ -94,4 +95,6 @@ public class PrimaryController implements Initializable {
         String password = passField.getText();
         messageService.sendMessage(String.format("/auth %s %s", login, password));
     }
+
+
 }
